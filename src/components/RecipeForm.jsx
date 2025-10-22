@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./RecipeForm.css";
 
-export default function RecipeForm({ onCreate, onSaveEdit, editing, cancelEdit })  // react state's
+export default function RecipeForm({ onCreate, onSaveEdit, editing, cancelEdit }) { // react state's
 
 const [title, setTitle] = useState("");  // what the user typed for the title 
 const [ingredients, setIngredients] = useState("");  //the text box for ingredients (comma seperated)
@@ -52,3 +52,4 @@ return (
         </div>
     </form>
 );
+}

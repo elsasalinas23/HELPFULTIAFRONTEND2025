@@ -21,7 +21,7 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/recipes" element={<RecipesPage />} />
           <Route path="/about" element={<AboutPage />} />
-          <Route path= "*" element={NotFoundPage />} />
+          <Route path= "*" element={<NotFoundPage />} />
         </Routes>
       </main>
     </div>

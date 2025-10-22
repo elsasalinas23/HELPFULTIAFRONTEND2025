@@ -3,7 +3,7 @@ import "./RecipeList.css";
 export default function RecipeList({ items, onEdit, onDelete, onRefresh, loading }) {
 
     return {
-        <
+        <>
         <div className="list-header">
             <h2 className="list-title">Saved Recipes</h2>
             <button className="btn" onClick={onRefresh} disabled={loading}>
@@ -33,6 +33,5 @@ export default function RecipeList({ items, onEdit, onDelete, onRefresh, loading
             ))}
             </ul>
             )}
-</>
     
     }

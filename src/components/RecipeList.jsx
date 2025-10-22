@@ -2,15 +2,14 @@ import "./RecipeList.css";
 
 export default function RecipeList({ items, onEdit, onDelete, onRefresh, loading }) {
 
-    return {
+    return (
         <>
         <div className="list-header">
             <h2 className="list-title">Saved Recipes</h2>
             <button className="btn" onClick={onRefresh} disabled={loading}>
                 {loading ? "loading..." : "Refresh"} </button>
         </div>
-    {
-        items.length === 0 ? (
+    {items.length === 0 ? (
             <p className="list-empty">No recipes yet- add one above</p>
         ) : (
         <ul className="recipe-list">
@@ -33,5 +32,6 @@ export default function RecipeList({ items, onEdit, onDelete, onRefresh, loading
             ))}
             </ul>
             )}
-    
+    </>
+        );
     }

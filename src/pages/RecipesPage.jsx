@@ -20,7 +20,7 @@ export default function RecipesPage() {   //page container
         }
     }
 
-    useEffect(() => { load(); }, []);  /// when the page opens the first time, load recipes 
+    
 
     async function create(body) {     //// create 
         try {

@@ -17,9 +17,6 @@ useEffect(() => {
     }
 }, [editing]);
 
-function toArray(str) {   // helper:'a,b,c" ->["a","b","c"]
-    return str.split(",").map(s => s.trim()).filter(Boolean);
-}
 
 function handleSubmit(e) {    // when the user submits the form
     e.preventDefault();

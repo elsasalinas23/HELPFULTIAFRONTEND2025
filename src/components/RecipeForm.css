@@ -4,5 +4,5 @@
 .form-input { width:100%; padding:8px; margin-top:4px; border:1px solid #ddd; border-radius:6px; }
 .form-actions { display:flex; gap:8px; margin-top:4px; }
 .btn { padding:8px 14px; border-radius:6px; border:1px solid #ddd; background:#f6f6f6; cursor:pointer; }
-.btn.primary { background:#2b7cff; color:#fff; border:1px solid #2b7cff; }
+.btn.primary { background:#3f87fb; color:#fff; border:1px solid #2b7cff; }
 .btn:hover { filter:brightness(0.98); }

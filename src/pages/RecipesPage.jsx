@@ -9,6 +9,9 @@ export default function RecipesPage() {   //page container
     const [loading, setLoading] = useState(false); // fetchi spinner flag 
     const [error, setError] = useState(""); // user error message
 
+    const [showAll, setShowAll] = useState(false);
+    const visible = showAll ? recipes : recipes.slice(0, 5);
+
     async function load() {                   /// READ ALL
         try {
             const { data } = await api.get("/recipes");  // GET/api/recipes
@@ -51,42 +54,38 @@ export default function RecipesPage() {   //page container
     }, []);
 
 
-    const [showAll, setShowAll] = useState(false);
-    const visible = showAll ? recipes : recipes.slice(0, 5);
+return (
+  <div className="recipes-page">   {/* page container */}
+    <h1 className="page-title">Recipe Manager</h1>
 
+    {error && <div className="error-box">{error}</div>}
 
+    {/* Form handles both Create and Edit */}
+    <RecipeForm
+      onCreate={create}
+      onSaveEdit={saveEdit}
+      editing={editing}
+      cancelEdit={() => setEditing(null)}
+    />
 
-    // The JSX below is the page layout + child components
-    return (
-        <div className="recipes-page">
-            <h1 className="page-title">Recipe Manager</h1>
+    <hr className="page-divider" />
 
-            {error && <div className="error-box">{error}</div>}
+    {/* List shows recipes and supports Edit/Delete/Refresh */}
+    <RecipeList
+      items={visible}       // <= use visible (slice or full)
+      loading={loading}
+      onRefresh={load}
+      onEdit={setEditing}
+      onDelete={remove}
+    />
 
-            {/* The form handles both Create and Edit */}
-            <RecipeForm
-                onCreate={create}
-                onSaveEdit={saveEdit}
-                editing={editing}
-                cancelEdit={() => setEditing(null)}
-            />
-
-            <hr className="page-divider" />
-
-            {/* The list shows all recipes and lets you Edit/Delete/Refresh */}
-            <RecipeList
-                items={visible}
-                loading={loading}
-                onRefresh={load}
-                onEdit={setEditing}
-                onDelete={remove}
-            />
-            </div>
-        {recipes.length > 5 && (
-  <div className="list-footer">
-    <button className="btn" onClick={() => setShowAll(v => !v)}>
-      {showAll ? "Show less" : "Show all"}
-    </button>
+    {/* HYBRID: only show first 5, let user expand */}
+    {recipes.length > 5 && (
+      <div className="list-footer">
+        <button className="btn" onClick={() => setShowAll(v => !v)}>
+          {showAll ? "Show less" : "Show all"}
+        </button>
+      </div>
+    )}
   </div>
-)}
-}
+)};

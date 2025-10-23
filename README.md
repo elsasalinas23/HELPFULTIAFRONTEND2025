@@ -40,12 +40,13 @@ routes/
 Recipe.mjs
 middleware/
 error.mjs
+log.mjs
 utilities/
 recipedbcon.mjs
 
 ### Backend `.env`
 PORT=3000
-MONGO_URI=my_mongodb_connection_string
+MONGO_URI=my_mongodb_connection_string/helpfultia
 
 
 ### Frontend `.env`

@@ -1,12 +1,12 @@
 :root {
-  --bg: #aa0c70;        
+  --bg: #f22aa9;        
   --panel: #230b9c;     
   --accent: #39033a;    
   --accent-2: #c6236c;  
   --text: #330f52;      
   --muted: #4e2f88;     
   --danger: #ff0505;    
-  --border: #5d0628;    
+  --border: #e786ab;    
 }
 
 * { box-sizing: border-box; }
@@ -23,7 +23,7 @@ a { color: var(--accent); text-decoration: none; }
 .nav {
   display: flex; gap: 1rem; padding: 14px 18px;
   border-bottom: 1px solid var(--border);
-  background: rgba(29, 39, 147, 0.7);
+  background: rgba(207, 210, 35, 0.7);
   position: sticky; top: 0; backdrop-filter: blur(6px);
 }
 

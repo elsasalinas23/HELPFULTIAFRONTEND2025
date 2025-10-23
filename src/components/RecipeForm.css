@@ -1,7 +1,13 @@
 .recipe-form { display:grid-center; gap:8px; margin:16px 0; border:1px solid #2d77ac; padding:12px; border-radius:8px; background:#89bcdf; }
 .form-label { display:flexbox; font-weight:600; }
-.form-input { width:100%; padding:8px; margin-top:4px; border:1px solid #ab7979; border-radius:6px; }
+.form-input {  display: flex; padding:8px; margin-top:4px; border:1px solid #ab7979; border-radius:6px; }
 .form-actions { display:flex; gap:8px; margin-top:4px; }
 .btn { padding:8px 14px; border-radius:6px; border:1px solid #c68080; background:#9f5050; cursor:pointer; }
 .btn.primary { background:#3f87fb; color:#b47575; border:1px solid #2b7cff; }
 .btn:hover { filter:brightness(0.98); }
+.button-row {
+  display: flex;
+  gap: 1rem;
+}
+
+

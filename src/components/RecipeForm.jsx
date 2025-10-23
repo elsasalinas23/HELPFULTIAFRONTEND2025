@@ -41,11 +41,15 @@ function handleSubmit(e) {
 
   console.log("Submitting body →", body); // <— open DevTools > Console to verify
 
-  if (editing && editing._id) {
-    onSaveEdit(editing._id, body);
-  } else {
-    onCreate(body);
-  }
+  if (!title.trim() || ingredients.length === 0) {
+  alert("Please enter a recipe title and at least one ingredient.");
+  return;
+}
+
+if (ingredients.some(ing => ing.trim().length < 2)) {
+  alert("Each ingredient must have at least two letters.");
+  return;
+}
 }
 
 
@@ -74,21 +78,21 @@ function handleSubmit(e) {
           required
         />
       </label>
+<div className="button-row">
+  <button type="submit">Add Recipe</button>
+  <button
+    type="button"
+    onClick={() => {
+      setTitle("");
+      setIngredients([]);
+      setIngredientInput("");
+    }}
+  >
+    Clear Form
+  </button>
+</div>
 
-      <div className="actions">
-        <button className="btn" type="submit">
-          {editing && editing._id ? "Save changes" : "Add recipe"}
-        </button>
-        {editing && (
-          <button
-            className="btn secondary"
-            type="button"
-            onClick={cancelEdit}
-          >
-            Cancel
-          </button>
-        )}
-      </div>
+      
     </form>
   );
 }

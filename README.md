@@ -19,9 +19,11 @@ App.jsx
 styles/App.css
 pages/
 HomePage.jsx
+HomePage.css
 RecipesPage.jsx
 RecipesPage.css
 AboutPage.jsx
+AboutPage.css
 NotFoundPage.jsx
 components/
 RecipeForm.jsx
@@ -35,9 +37,9 @@ helpful-tia-backend/
 server.mjs
 .env
 models/
-recipeModel.mjs
+RecipeModel.mjs
 routes/
-Recipe.mjs
+RecipeRoutes.mjs
 middleware/
 error.mjs
 log.mjs
@@ -78,6 +80,15 @@ Each component has its own .css file:
 -RecipeList.css — cards and buttons
 -RecipesPage.css — page layout and error boxes
 
+## 📂 Project Repositories
+
+- **Frontend (React):** 
+https://github.com/elsasalinas23/HELPFULTIAFRONTEND2025.git
+- **Backend (Express + MongoDB):**
+https://github.com/elsasalinas23/HelpfulTiaBackEnd2025.git 
+
+
+
 📚 Official Documentation
 Category	        Link
 React	            https://react.dev/learn
@@ -95,3 +106,4 @@ Mongoose	        https://mongoosejs.com/docs/guide.html
 MongoDB Atlas	    https://www.mongodb.com/docs/atlas/getting-started/
 
 Postman	            https://learning.postman.com/docs/getting-started/introduction/
+ MDN JavaScript Reference – https://developer.mozilla.org/en-US/docs/Web/JavaScript

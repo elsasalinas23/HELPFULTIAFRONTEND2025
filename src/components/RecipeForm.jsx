@@ -25,23 +25,29 @@ useEffect(() => {
 }, [editing?._id]);   // ✅ depends only on the identity of the item being edited
 
 
-  function toArray(csv) {
-    return String(csv)
-      .split(",")
-      .map(s => s.trim())
-      .filter(Boolean);
+function toArray(str) {
+  if (Array.isArray(str)) return str;
+  if (typeof str === "string") {
+    return str.split(",").map(s => s.trim()).filter(Boolean);
   }
+  return [];
+}
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    const body = { title, ingredients: toArray(ingredients) };
+function handleSubmit(e) {
+  e.preventDefault();
 
-    if (editing && editing._id) {
-      onSaveEdit(editing._id, body); // update existing
-    } else {
-      onCreate(body);                 // create new
-    }
+  // Build exactly what the API expects:
+  const body = { title: title?.trim(), ingredients: toArray(ingredients) };
+
+  console.log("Submitting body →", body); // <— open DevTools > Console to verify
+
+  if (editing && editing._id) {
+    onSaveEdit(editing._id, body);
+  } else {
+    onCreate(body);
   }
+}
+
 
   return (
     <form className="recipe-form" onSubmit={handleSubmit}>

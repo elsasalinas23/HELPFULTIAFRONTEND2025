@@ -1,52 +1,88 @@
+// src/components/RecipeForm.jsx
 import { useEffect, useState } from "react";
 import "./RecipeForm.css";
 
-export default function RecipeForm({ onCreate, onSaveEdit, editing, cancelEdit }) { // react state's
+export default function RecipeForm({ onCreate, onSaveEdit, editing, cancelEdit }) {
+  // each field has its own state + setter
+  const [title, setTitle] = useState("");
+  const [ingredients, setIngredients] = useState("");
 
-const [title, setTitle] = useState("");  // what the user typed for the title 
-const [ingredients, setIngredients] = useState("");  //the text box for ingredients (comma seperated)
-
-// if swtich into edit mode, prefill the fields; if we cancel,clear them 
+ // In RecipeForm.jsx
 useEffect(() => {
-    if (editing) {
-        setTitle(editing.title || "");
-        setIngredients((editing.ingredients || []).join("."));
-    } else {
-        setTitle("");
-        setIngredients("");
-    }
-}, [editing]);
+  if (editing && editing._id) {
+    setTitle(editing.title || "");
+    setIngredients(
+      Array.isArray(editing.ingredients)
+        ? editing.ingredients.join(", ")
+        : (editing.ingredients || "")
+    );
+  } else {
+    // IMPORTANT: only clear when leaving edit mode,
+    // not on every parent re-render.
+    setTitle("");
+    setIngredients("");
+  }
+}, [editing?._id]);   // ✅ depends only on the identity of the item being edited
 
 
-function handleSubmit(e) {    // when the user submits the form
+  function toArray(csv) {
+    return String(csv)
+      .split(",")
+      .map(s => s.trim())
+      .filter(Boolean);
+  }
+
+  function handleSubmit(e) {
     e.preventDefault();
     const body = { title, ingredients: toArray(ingredients) };
-    editing ? onSaveEdit(editing._id, body) : onCreate(body); // if editing, call save; otherwise create new 
-}
 
-return (
+    if (editing && editing._id) {
+      onSaveEdit(editing._id, body); // update existing
+    } else {
+      onCreate(body);                 // create new
+    }
+  }
+
+  return (
     <form className="recipe-form" onSubmit={handleSubmit}>
-        <label className="form-label">
-            Title
-            <input className="form-input"
-                value={title}
-                onChange={e => setTitle(e.target.value)}
-                placeholder="Pollo Guisado" />
-        </label>
-        <label className="form-label">
-            Ingredients (comma seperated)
-            <input className="form-input"
-                value={ingredients}
-                onChange={e => setTitle(e.target.value)}
-                placeholder="chicken, tomato, garlic" />
-        </label>
-        <div className="form-actions">
-            <button className="btn primary" type="submit">
-                {editing ? "Save" : "Add Recipe"} </button>
-            {editing && (
-                <button className="btn" type="button" onClick={cancelEdit}> Cancel</button>
-            )}
-        </div>
+      <label>
+        Title
+        <input
+          type="text"
+          value={title}                       // <- MUST be the title state (not title[0])
+          onChange={(e) => setTitle(e.target.value)}   // <- MUST call setTitle
+          name="title"
+          placeholder="Arroz con leche"
+          required
+        />
+      </label>
+
+      <label>
+        Ingredients (comma separated)
+        <textarea
+          value={ingredients}                 // <- MUST be the ingredients state
+          onChange={(e) => setIngredients(e.target.value)} // <- MUST call setIngredients
+          name="ingredients"
+          placeholder="arroz, leche, canela, azúcar"
+          rows={3}
+          required
+        />
+      </label>
+
+      <div className="actions">
+        <button className="btn" type="submit">
+          {editing && editing._id ? "Save changes" : "Add recipe"}
+        </button>
+        {editing && (
+          <button
+            className="btn secondary"
+            type="button"
+            onClick={cancelEdit}
+          >
+            Cancel
+          </button>
+        )}
+      </div>
     </form>
-);
+  );
 }

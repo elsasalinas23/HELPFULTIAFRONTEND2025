@@ -20,7 +20,7 @@ export default function RecipesPage() {   //page container
         }
     }
 
-    
+
 
     async function create(body) {     //// create 
         try {
@@ -44,6 +44,17 @@ export default function RecipesPage() {   //page container
             if (editing?._id === id) setEditing(null);  // if we deleted the one we editing, exit mode 
         } catch { setError("Deleted Failed"); }
     }
+    // call the loader once when the page mounts
+    useEffect(() => {
+        setLoading(true);      // show spinner flag
+        load();                // runs your GET /recipes
+    }, []);
+
+
+    const [showAll, setShowAll] = useState(false);
+    const visible = showAll ? recipes : recipes.slice(0, 5);
+
+
 
     // The JSX below is the page layout + child components
     return (
@@ -64,26 +75,18 @@ export default function RecipesPage() {   //page container
 
             {/* The list shows all recipes and lets you Edit/Delete/Refresh */}
             <RecipeList
-                items={recipes}
+                items={visible}
                 loading={loading}
                 onRefresh={load}
                 onEdit={setEditing}
                 onDelete={remove}
             />
-        </div>
-    );
+            </div>
+        {recipes.length > 5 && (
+  <div className="list-footer">
+    <button className="btn" onClick={() => setShowAll(v => !v)}>
+      {showAll ? "Show less" : "Show all"}
+    </button>
+  </div>
+)}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

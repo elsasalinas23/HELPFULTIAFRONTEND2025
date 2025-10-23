@@ -2,8 +2,8 @@
   --bg: #aa0c70;        
   --panel: #230b9c;     
   --accent: #39033a;    
-  --accent-2: #2184d4;  
-  --text: #1a1416;      
+  --accent-2: #c6236c;  
+  --text: #330f52;      
   --muted: #4e2f88;     
   --danger: #ff0505;    
   --border: #5d0628;    
@@ -13,7 +13,7 @@
 
 body {
   margin: 0;
-  background: linear-gradient(180deg, var(--bg), #aa0c70);
+  background: linear-gradient(145deg, #ff9a9e, #fecfef 50%, #f6d365);
   color: var(--text);
   font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 }
@@ -35,7 +35,7 @@ a { color: var(--accent); text-decoration: none; }
 
 .btn {
   background: var(--accent);
-  color: #3a09a4;
+  color: #5206f5;
   border: none;
   padding: 10px 14px;
   border-radius: 10px;
@@ -43,7 +43,7 @@ a { color: var(--accent); text-decoration: none; }
   cursor: pointer;
 }
 .btn.secondary { background: var(--accent-2); }
-.btn.danger { background: var(--danger); color: #a7c821; }
+.btn.danger { background: var(--danger); color: #730a81; }
 .btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
 .input, .textarea {

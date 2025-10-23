@@ -1,0 +1,34 @@
+.about-container {
+  min-height: 85vh;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 2.25rem;
+  text-align: center;
+
+  border-radius: 18px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.18);
+
+  /* calmer tropical */
+  background: linear-gradient(145deg, #ff9a9e, #fecfef 50%, #f6d365);
+  color: #2b1d1d;
+}
+
+.about-container h1 {
+  font-family: "Pacifico", cursive;
+  color: #2b1d1d;
+  margin-bottom: 0.5rem;
+}
+
+.about-container .brand { color: #7a1e5e; }
+
+.tips, .how {
+  text-align: left;
+  margin: 1rem auto 0;
+  max-width: 720px;
+  line-height: 1.7;
+}
+
+.tips li::marker { content: "🌿 "; }
+.how li { margin: 0.25rem 0; }
+
+.closing { margin-top: 1.25rem; font-style: italic; }

@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap");
+
+.home-container {
+  min-height: 90vh;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 2.5rem;
+  text-align: center;
+
+  border-radius: 18px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.25);
+
+  /* happy tropical gradient */
+  background: linear-gradient(180deg, #ff7eb3 0%, #ff758c 40%, #ffce88 100%);
+  color: #fff;
+}
+
+.home-container h1 {
+  font-family: "Pacifico", cursive;
+  font-size: 2.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.home-container .brand {
+  text-shadow: 0 2px 0 rgba(0,0,0,0.15);
+}
+
+.home-container h2 {
+  margin-top: 1.2rem;
+  color: #fff9e6;
+}
+
+.home-container p,
+.home-container li {
+  font-family: "Quicksand", system-ui, sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.home-steps {
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0 0;
+}
+
+.home-steps li::before {
+  content: "🌺 ";
+}
+
+.closing {
+  margin-top: 1.4rem;
+  font-style: italic;
+  color: #fffbe8;
+}

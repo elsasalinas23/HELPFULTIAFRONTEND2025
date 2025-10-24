@@ -1,98 +1,121 @@
 // src/components/RecipeForm.jsx
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./RecipeForm.css";
 
-export default function RecipeForm({ onCreate, onSaveEdit, editing, cancelEdit }) {
-  // each field has its own state + setter
-  const [title, setTitle] = useState("");
-  const [ingredients, setIngredients] = useState("");
-
- // In RecipeForm.jsx
-useEffect(() => {
-  if (editing && editing._id) {
-    setTitle(editing.title || "");
-    setIngredients(
-      Array.isArray(editing.ingredients)
-        ? editing.ingredients.join(", ")
-        : (editing.ingredients || "")
-    );
-  } else {
-    // IMPORTANT: only clear when leaving edit mode,
-    // not on every parent re-render.
-    setTitle("");
-    setIngredients("");
-  }
-}, [editing?._id]);   // ✅ depends only on the identity of the item being edited
-
-
-function toArray(str) {
-  if (Array.isArray(str)) return str;
-  if (typeof str === "string") {
-    return str.split(",").map(s => s.trim()).filter(Boolean);
+// helper: "a, b, c" -> ["a","b","c"]
+function toArray(csv) {
+  if (Array.isArray(csv)) return csv;
+  if (typeof csv === "string") {
+    return csv
+      .split(",")
+      .map(s => s.trim())
+      .filter(Boolean);
   }
   return [];
 }
 
-function handleSubmit(e) {
-  e.preventDefault();
+export default function RecipeForm({ onCreate, onSaveEdit, editing, cancelEdit }) {
+  const [title, setTitle] = useState("");
+  const [ingredients, setIngredients] = useState(""); // keep as TEXT in the textarea
+  const [error, setError] = useState("");
 
-  // Build exactly what the API expects:
-  const body = { title: title?.trim(), ingredients: toArray(ingredients) };
+  // when entering/leaving edit mode, prefill / clear
+  useEffect(() => {
+    if (editing && editing._id) {
+      setTitle(editing.title || "");
+      // if editing.ingredients is an array, show it as csv in the textarea
+      setIngredients(Array.isArray(editing.ingredients) ? editing.ingredients.join(", ") : (editing.ingredients || ""));
+    } else {
+      setTitle("");
+      setIngredients("");
+    }
+    setError("");
+  }, [editing?._id]);
 
-  console.log("Submitting body →", body); // <— open DevTools > Console to verify
+  function handleSubmit(e) {
+    e.preventDefault();
+    const ingArr = toArray(ingredients);
 
-  if (!title.trim() || ingredients.length === 0) {
-  alert("Please enter a recipe title and at least one ingredient.");
-  return;
-}
+    // simple validations
+    if (!title.trim()) {
+      setError("Title is required.");
+      return;
+    }
+    if (ingArr.length === 0) {
+      setError("Please add at least one ingredient (comma separated).");
+      return;
+    }
+    // require each token to be at least 2 characters (tweak if you want)
+    if (ingArr.some(s => s.length < 2)) {
+      setError("Each ingredient should be at least 2 characters.");
+      return;
+    }
 
-if (ingredients.some(ing => ing.trim().length < 2)) {
-  alert("Each ingredient must have at least two letters.");
-  return;
-}
-}
+    const body = { title: title.trim(), ingredients: ingArr };
+    console.log("Submitting body →", body);
 
+    if (editing && editing._id) {
+      onSaveEdit(editing._id, body);
+    } else {
+      onCreate(body);
+    }
+
+    // clear after successful submit (optional; or rely on parent refresh)
+    setTitle("");
+    setIngredients("");
+    setError("");
+  }
 
   return (
     <form className="recipe-form" onSubmit={handleSubmit}>
-      <label>
-        Title
+      {error && <div className="error-box">{error}</div>}
+
+      <div className="form-row">
+        <label className="form-label" htmlFor="title">Title</label>
         <input
+          id="title"
+          className="form-input"
           type="text"
-          value={title}                       // <- MUST be the title state (not title[0])
-          onChange={(e) => setTitle(e.target.value)}   // <- MUST call setTitle
-          name="title"
-          placeholder="Arroz con leche"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="turkey sandwich"
           required
         />
-      </label>
+      </div>
 
-      <label>
-        Ingredients (comma separated)
+      <div className="form-row">
+        <label className="form-label" htmlFor="ingredients">Ingredients (comma separated)</label>
         <textarea
-          value={ingredients}                 // <- MUST be the ingredients state
-          onChange={(e) => setIngredients(e.target.value)} // <- MUST call setIngredients
-          name="ingredients"
-          placeholder="arroz, leche, canela, azúcar"
+          id="ingredients"
+          className="form-input textarea"
+          value={ingredients}
+          onChange={(e) => setIngredients(e.target.value)}
+          placeholder="turkey, bread, mayo"
           rows={3}
           required
         />
-      </label>
-<div className="button-row">
-  <button type="submit">Add Recipe</button>
-  <button
-    type="button"
-    onClick={() => {
-      setTitle("");
-      setIngredients([]);
-      setIngredientInput("");
-    }}
-  >
-    Clear Form
-  </button>
-</div>
+      </div>
 
-      
+      <div className="form-actions">
+        <button className="btn primary" type="submit">
+          {editing && editing._id ? "Save changes" : "Add Recipe"}
+        </button>
+
+        {/* Clear button you asked for */}
+        <button
+          className="btn"
+          type="button"
+          onClick={() => { setTitle(""); setIngredients(""); setError(""); }}
+        >
+          Clear Form
+        </button>
+
+        {editing && (
+          <button className="btn secondary" type="button" onClick={cancelEdit}>
+            Cancel
+          </button>
+        )}
+      </div>
     </form>
   );
 }

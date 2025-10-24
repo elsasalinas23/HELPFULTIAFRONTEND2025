@@ -18,15 +18,15 @@ export default function HomePage() {
         <strong>Welcome, mis amores.</strong>  this is <strong>Helpful Tía</strong>!  
         I know you miss <em>grandma’s</em> and <em>mami’s</em> cooking, but I also know that 
         we all want to feel healthy and radiant — mas <strong>Selena</strong>, menos <strong>Yolanda</strong> 😄. 💃✨.
-        Aquí puedes <strong>guardar</strong> tus recetas favoritas y también ver
-        <strong> healthier verison</strong> de esos platos tradicionales que te llenan
-        el corazón ❤️ y la pancita 🍽️.
+        Here you can <strong>guardar</strong> tus recipes favoritas y también ver
+        <strong> healthier verison</strong> of those traditional plates que te llenan
+        el corazón ❤️ y la pancita .
       </p>
 
       <h2>Ready / ¿List@? ¡Vámonos! 🚀</h2>
       <ul className="home-steps">
         <li>
-          Ve a <strong>Recipes</strong> → <em>write oyur favorite recipe</em> (ej. <em>arroz con leche</em> 🍚🥛).
+          Ve a <strong>Recipes</strong> → <em>write your favorite recipe</em> (ej. <em>arroz con leche</em> 🍚🥛).
         </li>
         <li>
           Add los <strong>ingredientes</strong> (arroz, leche, canela…) y pulsa <em>Save</em> 💾.

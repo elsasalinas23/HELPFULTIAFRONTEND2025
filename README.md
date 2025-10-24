@@ -111,3 +111,11 @@ MongoDB Atlas	    https://www.mongodb.com/docs/atlas/getting-started/
 
 Postman	            https://learning.postman.com/docs/getting-started/introduction/
  MDN JavaScript Reference – https://developer.mozilla.org/en-US/docs/Web/JavaScript
+
+ CSS Reference Links
+ MDN CSS Reference — https://developer.mozilla.org/docs/Web/CSS/Reference
+
+MDN CSS Selectors — https://developer.mozilla.org/docs/Web/CSS/CSS_Selectors
+
+MDN Using CSS Custom Properties — https://developer.mozilla.org/docs/Web/CSS/Using_CSS_custom_properties
+

@@ -23,20 +23,23 @@ export default function AboutPage() {
         <li>Error handling and friendly UI feedback</li>
       </ul>
 
-
+      <h2>🎯 What you can do today</h2>
+      <ul>
+      <li> Add a recipe (título + ingredientes) </li>
+      <li> Edit, delete, or refresh your lista de recetas</li>
+      <li> Ver todo guardado en un solo lugar </li>
+      </ul>
       <h2>🎯 Purpose / Propósito</h2>
       <p>
         The goal is to let users <strong>add, edit, delete, and view</strong> their favorite
         recipes (CRUD functionality) while preparing for future features:
       </p>
       <ul>
-        <li> 🌎 Bilingual ingredient mapping (English & Español)</li>
-        <li> 🌿Healthy swap rules — convertir tus recetas favoritas en versiones light</li>
+        <li> 🌎 Bilingual ingredient mapping; Ingredient Library (ES/EN) – busca “arroz” o “rice,” te encontramos ambos</li>
+        <li> 🌿Healthy swap rules — convertir tus recetas favoritas en versiones light ; Tía Tips – consejos para “swap” saludables </li>
         <li> 🛒 Grocery list generator</li>
         <li>Basic login for personalized collections</li>
       </ul>
-
-
       <h2>🚀 What I Learned / Lo que aprendí</h2>
       <ul>
         <li>React state management with <code>useState</code> & <code>useEffect</code></li>
@@ -50,7 +53,7 @@ export default function AboutPage() {
         families. And technology can help us keep those memories alive.
       </p>
 
-      <p><strong>Gracias por visitar — Thank you for visiting 💜 Con amor y sazón,Tu Tía 💜</strong></p> 
+      <p><strong>Gracias por visitar — Thank you for visiting 💜 Con amor y sazón,Tu Tía 💜</strong></p>
     </div>
   );
 }

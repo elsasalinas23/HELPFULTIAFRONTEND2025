@@ -1,5 +1,15 @@
 # 🍲 Helpful Tía — MERN Full Stack Capstone
 
+## 📂 Project Repositories
+
+- **Frontend (React):** 
+https://github.com/elsasalinas23/HELPFULTIAFRONTEND2025.git
+- **Backend (Express + MongoDB):**
+https://github.com/elsasalinas23/HelpfulTiaBackEnd2025.git 
+
+
+
+
 ## 📋 Overview
 Helpful Tía is a bilingual healthy-recipe builder that lets users add their own recipes, view them, update them, and delete them (CRUD).  
 The project uses:
@@ -80,12 +90,6 @@ Each component has its own .css file:
 -RecipeList.css — cards and buttons
 -RecipesPage.css — page layout and error boxes
 
-## 📂 Project Repositories
-
-- **Frontend (React):** 
-https://github.com/elsasalinas23/HELPFULTIAFRONTEND2025.git
-- **Backend (Express + MongoDB):**
-https://github.com/elsasalinas23/HelpfulTiaBackEnd2025.git 
 
 
 
